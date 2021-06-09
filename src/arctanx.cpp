@@ -1,5 +1,4 @@
 #include <math.h>
-#include <numbers>
 
 double pi() {
     return 3.141592653589793;
