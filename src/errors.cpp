@@ -83,6 +83,7 @@ void lagrangeError(double n) {
 }
 
 void hermiteError(double n) {
+
     std::cout << "Quadratic hermite interpolation\n";
     //quadratic hermite interpolation for x^4 on [0, 2]
     double a = 0;
@@ -173,5 +174,51 @@ void monteCarloError(double n, int a, int b, int c) {
 
     std::cout << "Ellipsoid volume error:\n" << ellipsoidVerror << "\n";
     std::cout << "Pi approximation:\n" << piapprox << "\n" << "Pi error:\n" << pierror << "\n";
+
+}
+
+void heunError(int a, int b, double epsilon, double n) {
+
+    std::cout << "Heun method\n";
+    //Heun method with and without epsilon, the differential equation is set in fd.cpp
+
+    double initial = fd_initial();
+
+    //set up t between a and b, with h = 1/n
+    std::vector<double> t = form_t(a, b, n);
+    double size = t.size();
+
+    std::vector<double> u = heun(t, fd, initial);
+    std::vector<double> u_epsilon = heun(t, fd, initial + epsilon);
+
+    double uavgerror = 0;
+    double umaxerror = 0;
+    double uavgerror_epsilon = 0;
+    double umaxerror_epsilon = 0;
+    
+    for(int i = 0; i < size; i++) {
+
+        double o = fd_solution(t[i], 0);
+        double o_epsilon = fd_solution(t[i], epsilon);
+        double error = abs(o - u[i]);
+        double error_epsilon = abs(o_epsilon - u_epsilon[i]);
+
+        uavgerror = uavgerror + error;
+        uavgerror_epsilon = uavgerror_epsilon + error_epsilon;
+        if(error > umaxerror) {
+            umaxerror = error;
+        }
+        if(error_epsilon > umaxerror_epsilon) {
+            umaxerror_epsilon = error_epsilon;
+        }
+    }
+
+    uavgerror = uavgerror/size;
+    uavgerror_epsilon = uavgerror_epsilon/size;
+
+    std::cout << "Maximum error without epsilon:\n" << umaxerror << "\n";
+    std::cout << "Average error without epsilon:\n" << uavgerror << "\n";
+    std::cout << "Maximum error with epsilon:\n" << umaxerror_epsilon << "\n";
+    std::cout << "Average error with epsilon:\n" << uavgerror_epsilon << "\n";
 
 }

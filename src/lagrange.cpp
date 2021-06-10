@@ -1,5 +1,5 @@
 #include <vector>
-#include <iostream>
+#include <exception>
 
 std::vector<double> lagweights(std::vector<double> xk) {
     int n = xk.size();
@@ -24,7 +24,7 @@ std::vector<double> specialsum(std::vector<double> x, std::vector<double> z, std
     int s = t.size();
     std::vector<double> res(s);
     if(n != z.size()) {
-        throw "Wrong size input at specialsum(x, z, t)";
+        throw std::invalid_argument("Wrong size input at specialsum(x, z, t)");
     }
     for(int i = 0; i < s; i++) {
         double currti = t[i];
@@ -44,7 +44,7 @@ std::vector<double> lagpolint(std::vector<double> t, std::vector<double> xk, std
     int s = t.size();
     std::vector<double> wk = lagweights(xk);
     if(n != yk.size()) {
-        throw "Wrong size input at lagpolint(t, xk, yk)";
+        throw std::invalid_argument("Wrong size input at lagpolint(t, xk, yk)");
     }
     std::vector<double> res(s);
     std::vector<double> zk(n);
