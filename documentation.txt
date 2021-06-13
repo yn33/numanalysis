@@ -1,1 +1,43 @@
-work in progress
+C++ Numerical Analysis methods
+
+This directory contains numerical methods introduced on the course MS-C1650. They are also tested and errors
+are computed. Each file also contains more documentation for it's functions. 
+
+The layout of the directory:
+
+main.cpp - this file is used to choose test parameters and to run tests using error functions
+
+/src/ - folder containing all other necessary files
+
+
+/src/functions.h - header file containing the definitions of all numerical method functions, which are:
+
+/src/arctanx.cpp - contains a function that returns the value of pi it uses, and another function
+which is an approximation for arctanx
+
+/src/lagrange.cpp - contains all the necessary functions to construct and compute the barycentric
+form of Lagrange interpolation
+
+/src/quadhermite.cpp - contains a function which gives the coefficients for quadratic Hermite interpolation
+and a function that contructs the Bernstein polynomials and the final interpolation polynomial
+
+/src/montecarlo.cpp - contains a function which returns the Monte Carlo approximation of the ratio between
+a unit ball's volume and a unit cube's volume
+
+/src/heun.cpp - contains a function that forms the time vector based on the endpoints and n, also contains
+a function implementing Heun's method on a given derivative function and initial value
+
+/src/fd.ccp - contains 3 functions to present a differential equation for Euler or Heun's method, one returns the 
+errorless initial value, one returns the derivative and one returns the analytical solution which is used
+for testing error
+
+
+/src/errors.h - header file containing functions for computing the errors of the methods
+
+/src/errors.cpp - contains error functions for each method
+
+
+
+
+
+

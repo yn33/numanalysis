@@ -103,27 +103,7 @@ void hermiteError(double n) {
         t_2[i] = (b - z)*(i/n);
     }
     
-    std::vector<double>B_10(n + 1);
-    std::vector<double>B_11(n + 1);
-    std::vector<double>B_12(n + 1);
-    std::vector<double>B_20(n + 1);
-    std::vector<double>B_21(n + 1);
-    std::vector<double>B_22(n + 1);
-
-    for(int i = 0; i <= n; i++) {
-        B_10[i] = pow((1 - t_1[i]), 2);
-        B_20[i] = pow((1 - t_2[i]), 2);
-        B_11[i] = 2*t_1[i]*(1 - t_1[i]);
-        B_21[i] = 2*t_2[i]*(1 - t_2[i]);
-        B_12[i] = pow(t_1[i], 2);
-        B_22[i] = pow(t_2[i], 2);
-    }
-    
-    std::vector<double>p(2*(n + 1));
-    for(int i = 0; i <= n; i++) {
-        p[i] = c[0]*B_10[i] + c[1]*B_11[i] + c[2]*B_12[i];
-        p[i + n + 1] = c[3]*B_20[i] + c[4]*B_21[i] + c[5]*B_22[i];
-    }
+    std::vector<double>p = bernstein(n, t_1, t_2, c);
 
     double maxerror = 0;
     double avgerror = 0;
