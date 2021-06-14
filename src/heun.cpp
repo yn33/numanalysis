@@ -2,6 +2,7 @@
 #include <exception>
 #include <iostream>
 
+// Forms the t vector from the given interval and n = 1/h
 std::vector<double> form_t(int a, int b, double n) {
 
     double h = 1/n;
@@ -23,6 +24,8 @@ std::vector<double> form_t(int a, int b, double n) {
     return t;
 }
 
+// Implements the Heun method given the vector t from form_t, the derivative function fd(t, y), and the initial value
+// Returns a vector where every index corresponds to the index of the t value in the original vector t
 std::vector<double> heun(std::vector<double> t, double (*fd)(double, double), double initial) {
 
     double h = t[1] - t[0];

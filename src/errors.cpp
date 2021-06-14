@@ -2,9 +2,12 @@
 #include <iostream>
 #include "functions.h"
 
+// Error function for the arctan(x) approximation
+// Divides pi/2 into n parts and evaluates these points
+
 void arctanError(double n) {
     std::cout << "Arctan approximation\n";
-    //arctan approximation vs c++ atan()
+    // Arctan approximation vs c++ atan()
     double maxerror = 0;
     double avgerror = 0;
     double pivalue = pi();
@@ -23,23 +26,24 @@ void arctanError(double n) {
     std::cout << "Average error:\n" << avgerror << "\n";
 }
 
+// Error function for Lagrange interpolation
 void lagrangeError(double n) {
 
     double pivalue = pi();
     std::cout << "Lagrange interpolation\n";
-    //lagrange interpolation for sqrt(abs(x)) in [-1, 1]
-    //uniform points
+    // Lagrange interpolation for sqrt(abs(x)) in [-1, 1]
+    // Uniform points
     std::vector<double> u{ -1, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1 };
     std::vector<double> yu(9);
     for(int i = 0; i < 9; i++) {
         yu[i] = sqrt(abs(u[i]));
     }
-    //t points
+    // t points
     std::vector<double> t(n + 1);
     for(int i = 0; i <= n; i++) {
         t[i] = -1 + 2*(i/n);
     }
-    //chebyshev points
+    // Chebyshev points
     std::vector<double>yc(101);
     std::vector<double>xc(101);
     for(int i = 0; i <= 100; i++) {
@@ -59,7 +63,7 @@ void lagrangeError(double n) {
         double cest = cp[i];
         double uerror = abs(accurate - uest);
         double cerror = abs(accurate - cest);
-        //the algorithm gives NaN for t = x, where error is 0
+        // The algorithm gives NaN for t = x, where error is 0
         if(isnan(uerror)) {
             uerror = 0;
         } 
@@ -82,10 +86,12 @@ void lagrangeError(double n) {
 
 }
 
+// Error function for Hermite interpolation
 void hermiteError(double n) {
 
     std::cout << "Quadratic hermite interpolation\n";
-    //quadratic hermite interpolation for x^4 on [0, 2]
+    // Quadratic hermite interpolation for x^4 on [0, 2]
+
     double a = 0;
     double b = 2;
     double z = 1;
@@ -94,15 +100,18 @@ void hermiteError(double n) {
     double s1 = 0;
     double s2 = 32;
 
+    // Coefficients
     std::vector<double>c = quadhermite(a, b, z, y1, y2, s1, s2);
     std::vector<double>t_1(n + 1);
     std::vector<double>t_2(n + 1);
 
+    // Equally distributing the vectors t on both sides of z
     for(int i = 0; i <= n; i++) {
         t_1[i] = (z - a)*(i/n);
         t_2[i] = (b - z)*(i/n);
     }
     
+    // The interpolation
     std::vector<double>p = bernstein(n, t_1, t_2, c);
 
     double maxerror = 0;
@@ -133,22 +142,25 @@ void hermiteError(double n) {
     std::cout << "Average error:\n" << avgerror << "\n";
 }
 
+// Error function for Monte Carlo volume of ellipsoid
 void monteCarloError(double n, int a, int b, int c) {
 
     std::cout << "Monte Carlo ellipsoid volume and pi approximations\n";
 
     double pivalue = pi();
+
+    // Volumes of the hypercube and ellipsoid
     double cubeV = 2*a*2*b*2*c;
     double ellipsoidV = (4.0/3.0)*pivalue*a*b*c;
     
-    //approximation for the ratio of unit ball and unit cube volumes, pi/6
+    // Approximation for the ratio of unit ball and unit cube volumes, pi/6
     double ballnk = monteCarloBall(n);
 
-    //ellipsoid x^2/a^2 + y^2/b^2 + z^2/c^2 = 1 volume approximation
+    // Ellipsoid x^2/a^2 + y^2/b^2 + z^2/c^2 = 1 volume approximation
     double ellipsoidVapprox = cubeV*ballnk;
     double ellipsoidVerror = abs(ellipsoidV - ellipsoidVapprox);
 
-    //pi approximation
+    // Pi approximation
     double piapprox = ballnk*6;
     double pierror = abs(pivalue - piapprox);
 
@@ -157,14 +169,15 @@ void monteCarloError(double n, int a, int b, int c) {
 
 }
 
+// Error function for the Heun method
 void heunError(int a, int b, double epsilon, double n) {
 
     std::cout << "Heun method\n";
-    //Heun method with and without epsilon, the differential equation is set in fd.cpp
+    // Heun method with and without epsilon, the differential equation is set in fd.cpp
 
     double initial = fd_initial();
 
-    //set up t between a and b, with h = 1/n
+    // Set up t between a and b, with h = 1/n
     std::vector<double> t = form_t(a, b, n);
     double size = t.size();
 

@@ -37,6 +37,237 @@ for testing error
 /src/errors.cpp - contains error functions for each method
 
 
+Results when we compile and run main.cpp:
+
+Current n:
+100
+Arctan approximation
+Maximum error:
+1.0724754417879012e-13
+Average error:
+1.9623088907369881e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637614345709117
+Uniform points average error:
+0.22539394618326777
+Chebyshev points maximum error:
+0.049074945034855127
+Chebyshev points average error:
+0.0036542888138823811
+Quadratic hermite interpolation
+Maximum error:
+1.4426137599999997
+Average error:
+0.53300329999999974
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+2.0927412287183458
+Pi approximation:
+2.8799999999999999
+Pi error:
+0.26159265358979322
+Heun method
+Maximum error without epsilon:
+902004186469.62683
+Average error without epsilon:
+32746026571.491405
+Maximum error with epsilon:
+1578507326321.8528
+Average error with epsilon:
+57305546500.119659
+
+Current n:
+1000
+Arctan approximation
+Maximum error:
+1.113553693699032e-13
+Average error:
+2.0025802259453281e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637614345709117
+Uniform points average error:
+0.22881384307716579
+Chebyshev points maximum error:
+0.07369186718562741
+Chebyshev points average error:
+0.0041068702594774424
+Quadratic hermite interpolation
+Maximum error:
+1.4427190684159998
+Average error:
+0.53330003330000064
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+0.31674122871834243
+Pi approximation:
+3.1020000000000003
+Pi error:
+0.039592653589792803
+Heun method
+Maximum error without epsilon:
+0.0078431372549020439
+Average error without epsilon:
+0.007720230557600803
+Maximum error with epsilon:
+0.0080342124163044204
+Average error with epsilon:
+0.0078052166967429344
+
+Current n:
+10000
+Arctan approximation
+Maximum error:
+1.1191048088221578e-13
+Average error:
+2.0024622145566982e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637690681624062
+Uniform points average error:
+0.22905232102373224
+Chebyshev points maximum error:
+0.07369186718562741
+Chebyshev points average error:
+0.0041277778675474852
+Quadratic hermite interpolation
+Maximum error:
+1.4427190929851037
+Average error:
+0.53333000033330047
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+0.26885877128165703
+Pi approximation:
+3.1752000000000002
+Pi error:
+0.033607346410207128
+Heun method
+Maximum error without epsilon:
+0.0067681895093040234
+Average error without epsilon:
+0.0066765818915974903
+Maximum error with epsilon:
+0.0070402362712806421
+Average error with epsilon:
+0.0067447709462161122
+
+Current n:
+100000
+Arctan approximation
+Maximum error:
+1.1202150318467829e-13
+Average error:
+2.0028118898267379e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637748274810038
+Uniform points average error:
+0.22907365055175838
+Chebyshev points maximum error:
+0.073692597711760482
+Chebyshev points average error:
+0.0041287410830122932
+Quadratic hermite interpolation
+Maximum error:
+1.4427190999636381
+Average error:
+0.53333300000333395
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+0.0085812287183451019
+Pi approximation:
+3.14052
+Pi error:
+0.0010726535897931377
+Heun method
+Maximum error without epsilon:
+0.0066766816892092351
+Average error without epsilon:
+0.0065875264239913384
+Maximum error with epsilon:
+0.0069539100778021612
+Average error with epsilon:
+0.0066543427104462233
+
+Current n:
+1000000
+Arctan approximation
+Maximum error:
+1.1202150318467829e-13
+Average error:
+2.0028474744719844e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637748274810038
+Uniform points average error:
+0.229075731674798
+Chebyshev points maximum error:
+0.073692616116414561
+Chebyshev points average error:
+0.0041287959688119423
+Quadratic hermite interpolation
+Maximum error:
+1.4427190999915842
+Average error:
+0.53333330000004031
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+0.0015252287183429303
+Pi approximation:
+3.1414020000000002
+Pi error:
+0.00019065358979286628
+Heun method
+Maximum error without epsilon:
+0.0066676668168876851
+Average error without epsilon:
+0.0065787513439494096
+Maximum error with epsilon:
+0.0069453898871407183
+Average error with epsilon:
+0.0066454329468075618
+
+Current n:
+10000000
+Arctan approximation
+Maximum error:
+1.1213252548714081e-13
+Average error:
+2.0028466872594722e-14
+Lagrange interpolation
+Uniform points maximum error:
+0.91637748280117393
+Uniform points average error:
+0.22907593842693316
+Chebyshev points maximum error:
+0.073692616214829504
+Chebyshev points average error:
+0.0041288002520976485
+Quadratic hermite interpolation
+Maximum error:
+1.4427190999915842
+Average error:
+0.53333332999993954
+Monte Carlo ellipsoid volume and pi approximations
+Ellipsoid volume error:
+0.0030468287183431642
+Pi approximation:
+3.1412118000000002
+Pi error:
+0.00038085358979289552
+Heun method
+Maximum error without epsilon:
+0.0066667666685036042
+Average error without epsilon:
+0.0065778751184278408
+Maximum error with epsilon:
+0.0069445389774690502
+Average error with epsilon:
+0.0066445432785103833
+
+These results seem good. The errors decrease when n increases and cap at their theoretical limits.
 
 
 

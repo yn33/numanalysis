@@ -1,6 +1,7 @@
 #include <vector>
 #include <exception>
 
+// Computers the weights wk of the barycentric form Lagrange interpolation given the vector xk
 std::vector<double> lagweights(std::vector<double> xk) {
     int n = xk.size();
     std::vector<double> wk(n);
@@ -9,7 +10,7 @@ std::vector<double> lagweights(std::vector<double> xk) {
         double currxk = xk[i];
         for(int j = 0; j < n; j++) {
             double currxi = xk[j];
-            //don't include i = j term
+            // Don't include i = j term
             if(i != j) {
                 currwk = currwk*(1/(currxk - currxi));
             }
@@ -19,6 +20,9 @@ std::vector<double> lagweights(std::vector<double> xk) {
     return wk;
 }
 
+// Computes the sum used in the barycentric form, where x is the vector containing the points where the Lagrange polynomial was constructed
+// The vector z contains the weights
+// The vector t contains the points where the interpolation is evaluated, and the result is a vector containing the sum for every given t
 std::vector<double> specialsum(std::vector<double> x, std::vector<double> z, std::vector<double> t) {
     int n = x.size();
     int s = t.size();
@@ -39,6 +43,8 @@ std::vector<double> specialsum(std::vector<double> x, std::vector<double> z, std
     return res;
 }
 
+// Forms the barycentric form Lagrange interpolation on the points of vector t
+// Vector xk and yk are the points which the Lagrange polynomial is constructed from
 std::vector<double> lagpolint(std::vector<double> t, std::vector<double> xk, std::vector<double> yk) {
     int n = xk.size();
     int s = t.size();
@@ -48,12 +54,13 @@ std::vector<double> lagpolint(std::vector<double> t, std::vector<double> xk, std
     }
     std::vector<double> res(s);
     std::vector<double> zk(n);
+    // Forming the weights of the function values y
     for(int i = 0; i < n; i++) {
         zk[i] = wk[i]*yk[i];
     }
     std::vector<double> sum_1 = specialsum(xk, zk, t);
     std::vector<double> sum_2 = specialsum(xk, wk, t);
-    //the final barycentric form result is the termwise division of these sums
+    // The final barycentric form result is the termwise division of these sums
     for(int i = 0; i < s; i++) {
         res[i] = sum_1[i]/sum_2[i];
     }

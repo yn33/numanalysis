@@ -1,11 +1,13 @@
 #include <math.h>
 
+// Pi is defined here
 double pi() {
     return 3.141592653589793;
 }
 
+// Approximation of arctan(x) for positive x in radians
 double arctanx(double x) {
-    double pi = 3.141592653589793;
+    double pivalue = pi();
     double s;
     double y;
     double a;
@@ -20,6 +22,7 @@ double arctanx(double x) {
     else if (x > 1.7*pow(10, -9) && x <= 2*pow(10, -2)) {
         s = x - pow(x, 3)/3 + pow(x, 5)/5 - pow(x, 7)/7;
     } else {
+
         if (x >= 0 && x <= 1) {
             y = x;
             a = 0;
@@ -27,12 +30,12 @@ double arctanx(double x) {
         }
         if (x > 1) {
             y = 1/x;
-            a = pi/2;
+            a = pivalue/2;
             b = -1;  
         }
-        c = pi/16;       
+        c = pivalue/16;       
         if (y > (sqrt(2)-1) && y <= 1) {
-            c = (3*pi)/16;
+            c = (3*pivalue)/16;
         }
         d = tan(c);
         u = (y - d)/(1 + d*y);

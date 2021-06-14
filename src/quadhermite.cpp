@@ -1,5 +1,8 @@
 #include <vector>
 
+// Forms the Bernstein polynomial coefficients for a quadratic Hermite interpolation
+// a and b form the interval, z is the middle point, y1 and y2 are the end point values, s1 and s2 are the end point derivatives
+// Returns a vector containing these coefficients
 std::vector<double> quadhermite(double a, double b, double z, double y1, double y2, double s1, double s2) {
     double h1 = z - a;
     double h2 = b - z;
@@ -16,6 +19,11 @@ std::vector<double> quadhermite(double a, double b, double z, double y1, double 
     std::vector<double>c { c10, c11, c12, c20, c21, c22 };
     return c;
 }
+
+
+// Constructs the Hermite interpolation using the coefficients obtained from quadhermite
+// t_1 and t_2 are vectors containing the points that the interpolation is evaluated on both sides of the middle point
+// n + 1 is the size of the vectors t_1 and t_2
 
 std::vector<double> bernstein(double n, std::vector<double> t_1, std::vector<double> t_2, std::vector<double> c) {
 
